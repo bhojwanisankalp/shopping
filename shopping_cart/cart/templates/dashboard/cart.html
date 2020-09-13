@@ -1,0 +1,96 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+<link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-4">
+  <a class="navbar-brand text-white" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Shipping cart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <a href="/" class="text-white">
+        <i class="fas fa-store" style="font-size:24px"></i>
+    </a>
+   
+  </div>
+</nav>
+    <div class="container pt-5">
+   <div class="card shopping-cart">
+            
+            <div class="card-body" id="cart_items">
+                    <!-- PRODUCT -->
+                   <div class="row justify-content-center"> 
+                    <h3 class="text-grey">
+                      Cart Empty
+                    </h3>
+                  </div>
+                    <!-- END PRODUCT -->
+                
+            </div>
+            <div class="card-footer">
+                <div class="float-left" style="margin: 10px">
+                    <button onclick="clearCart()" class="btn btn-danger ">Clear</button>
+                </div>
+                <div class="float-right" style="margin: 10px">
+                    <a href="#" data-toggle="modal" data-target="#guestForm" class="btn btn-success pull-right">Checkout</a>
+                    <div class="float-right" style="margin: 5px">
+                        Total price: <b id="total_price">0</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  id="guestForm" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please provide the details to proceed further</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post">
+      <div class="modal-body">
+         
+                        {% csrf_token %}
+                        <table>
+                          <tr>
+                              {{ form.as_table }}
+                          </tr>
+                        </table>
+                        
+                        
+                    
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/cart.js' %}"></script>
+ 
+</body>
+</html>
+
+
